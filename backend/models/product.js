@@ -43,7 +43,7 @@ const productSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
-    isFetured: {
+    isFeatured: {
         type: Boolean,
         default: false
     },

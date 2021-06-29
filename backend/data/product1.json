@@ -1,0 +1,13 @@
+{
+    "name": "product 1",
+    "description": "product 1 description",
+    "richDescription": "propduct 2richDescription",
+    "image": "product1/image.jpg",
+    "brand": "product 1 brand",
+    "price": "product 1price",
+    "category": "product 1 category",
+    "countInStock": 10,
+    "rating": 5,
+    "numReviews": 22,
+    "isFeatured": true
+}

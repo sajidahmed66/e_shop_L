@@ -20,7 +20,7 @@ router.get('/:id', async (req, res) => {
         return res.status(500).json({ message: 'The category with given id was not found' })
     }
     res.status(200).send(category);
-})
+});
 
 
 router.post('/', async (req, res) => {
@@ -43,7 +43,7 @@ router.put('/:id', async (req, res) => {
         req.params.id,
         {
             name: req.body.name,
-            icon: req.body.icon,
+            icon: req.body.icon || categori.icon,
             color: req.body.color
         },
         { new: true }
@@ -52,7 +52,8 @@ router.put('/:id', async (req, res) => {
         return res.status(404).send('the category cannot be updated')
     }
     res.send(category)
-})
+});
+//deleting a single category
 router.delete('/:id', (req, res) => {
     Category.findByIdAndDelete(req.params.id).then(category => {
         if (category) {
@@ -63,6 +64,6 @@ router.delete('/:id', (req, res) => {
     }).catch(err => {
         return res.status(400).json({ seccess: false, error: err })
     })
-})
+});
 
 module.exports = router;
