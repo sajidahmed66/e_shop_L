@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 
 //getting the full productList
 router.get(`/`, async (req, res) => {
+    console.log('not1')
+
     //localhost:3000/api/v1/products?categories=6879665769,54766876969
     // this is query Parameters
     // this is to filter products by categories
@@ -23,14 +25,15 @@ router.get(`/`, async (req, res) => {
 });
 
 //getting a single product
-router.get('/:id', async (req, res) => {
-    const product = await (await Product.findById(req.params.id)).populated('category');
+router.get(`/:id`, async (req, res) => {
+    const product = await Product.findById(req.params.id).populate('category');
 
     if (!product) {
         res.status(500).json({ success: false })
     }
-    res.send(product)
+    res.send(product);
 })
+
 
 router.post(`/`, async (req, res) => {
     // validate if the category send by user is correct or not.
