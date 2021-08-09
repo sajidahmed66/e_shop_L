@@ -1,15 +1,18 @@
 import React from 'react'
-import { StyleSheet, Text, View, Dimensions, Image, SafeAreaView } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, Image, SafeAreaView, TextInput } from 'react-native'
+
+const { width, height } = Dimensions.get('window');
 
 const Header = () => {
     return (
-        <SafeAreaView style={styles.header} >
+        <View style={styles.header} >
             <Image
                 source={require('../../../assets/logo.jpg')}
                 resizeMode='contain'
                 style={{ width: '100%', height: '100%' }}
             />
-        </SafeAreaView>
+
+        </View>
     )
 }
 
@@ -17,12 +20,16 @@ export default Header
 
 const styles = StyleSheet.create({
     header: {
-        width: '100%',
-        flexDirection: 'row',
+        width: width,
+        // flexDirection: 'row',
         alignContent: 'center',
-        justifyContent: 'center',
-        padding: 20,
-        marginTop: 80,
-        height: 80,
+        // justifyContent: 'center',
+        paddingTop: 20,
+        paddingHorizontal: 10,
+        paddingBottom: 5,
+        height: 60,
+        // borderColor: 'black',
+        // borderWidth: 1,
+        elevation: 8
     }
 })

@@ -1,14 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import ProductContainer from './app/Screens/Products/ProductContainer';
-import Header from './app/Components/Shared/Header'
+
+
+const { width, height } = Dimensions.get('window');
+
 export default function App() {
   return (
     <View style={styles.container}>
-      <Header />
+
       <ProductContainer />
-      <StatusBar style="auto" />
+
     </View>
   );
 }
