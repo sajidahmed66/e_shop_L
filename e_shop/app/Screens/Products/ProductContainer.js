@@ -6,8 +6,11 @@ import Header from '../../Components/Shared/Header'
 import SearchedProduct from './SearchedProduct';
 import { Ionicons, Entypo } from '@expo/vector-icons';
 import Banner from '../../Components/Shared/Banner';
+import CategoryFilter from './CategoryFilter';
 //dummy data
-const productData = require('../../../assets/products.json')
+const productData = require('../../../assets/products.json');
+const productsCategory = require('../../../assets/094 categories.json');
+
 
 //layout
 const { width } = Dimensions.get('window')
@@ -17,17 +20,35 @@ const ProductContainer = (props) => {
     const [products, setProducts] = useState([])
     const [productFiltered, setProductFiltered] = useState([]);
     const [focus, setFocus] = useState()
+
+
+    //category related state variable
+    const [categories, setCategories] = useState([])
+    const [productCatg, setProductCatg] = useState([])
+    const [active, setActive] = useState()
+    const [initalState, setInitialState] = useState([])
+
+
+    //Mounting operation 
     useEffect(() => {
         setProducts(productData)
         setProductFiltered(productData)
         setFocus(false)
+        setCategories(productsCategory)
+        setActive(-1)
+        setInitialState(productData)
         return () => {
             setProducts([])
             setProductFiltered([])
             setFocus()
+            setCategories([])
+            setActive()
+            setInitialState([])
         }
     }, [])
 
+
+    //search filter methods 
     const searchedProductFiter = (text) => {
         setProductFiltered(
             products.filter((i) => i.name.toLowerCase().includes(text.toLowerCase()))
@@ -41,6 +62,20 @@ const ProductContainer = (props) => {
     const onBlur = () => {
         setFocus(false)
 
+    }
+
+    // Category filter  methods 
+    const changeCtg = (catg) => {
+        {
+            catg === 'all' ? [setProductCatg(initalState), setActive(true)]
+                : [
+                    setProductCatg(
+                        productData.filter(i => i.category.$oid === catg)
+                    ),
+                    setActive(true)
+                ]
+
+        }
     }
 
     return (
@@ -69,6 +104,13 @@ const ProductContainer = (props) => {
                     <View>
                         <Banner />
                     </View>
+                    <CategoryFilter
+                        categories={categories}
+                        categoryFilter={(cat_Id) => changeCtg(cat_Id)}
+                        productCatg={productCatg}
+                        active={active}
+                        setActive={setActive}
+                    />
                     <FlatList
                         numColumns={2}
                         data={products}
