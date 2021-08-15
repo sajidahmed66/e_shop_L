@@ -3,7 +3,8 @@ import { StyleSheet, Text, View, Dimensions, Image, SafeAreaView, TextInput } fr
 
 const { width, height } = Dimensions.get('window');
 
-const Header = () => {
+const Header = (props) => {
+
     return (
         <View style={styles.header} >
             <Image

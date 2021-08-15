@@ -1,6 +1,9 @@
 import React from 'react'
-import { StyleSheet, View, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Dimensions, ScrollView, LogBox } from 'react-native';
 import { Badge, List, NativeBaseProvider, Text } from 'native-base';
+
+//logBox only for development must be fixed before production
+LogBox.ignoreLogs(['Each child in a list should have a unique "key" prop'])
 const { width, height } = Dimensions.get('window')
 
 const CategoryFilter = (props) => {

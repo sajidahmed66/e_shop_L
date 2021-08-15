@@ -24,7 +24,7 @@ const Banner = (props) => {
                         horizontal={true}
                         showsButtons={false}
                         autoplay={true}
-                        autoplayTimeout={3}
+                        autoplayTimeout={5}
                         style={{ height: width / 2 }}
                     >
                         {bannerdata.map(bannerItem => (
@@ -48,17 +48,21 @@ export default Banner
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'gainsboro'
+        backgroundColor: 'gainsboro',
+        alignSelf: 'center',
+        justifyContent: 'center'
     },
     imageView: {
         height: width / 2,
         width: width - 40,
         borderRadius: 10,
-        marginHorizontal: 10
+        marginHorizontal: 10,
+        alignSelf: 'center'
     },
     swiper: {
         width: width,
         alignItems: 'center',
-        marginTop: 10
+        marginTop: 10,
+        alignSelf: 'center'
     }
 })

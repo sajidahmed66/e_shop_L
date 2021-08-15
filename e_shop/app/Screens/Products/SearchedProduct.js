@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, TouchableOpacity, Dimensions } from 'react-nati
 const { width, height } = Dimensions.get('window')
 
 const SearchedProduct = props => {
-
+    console.log("searched Products", props)
     const { productsFiltered } = props;
     // console.log(productsFiltered)
     return (

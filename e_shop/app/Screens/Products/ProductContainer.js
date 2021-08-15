@@ -78,10 +78,10 @@ const ProductContainer = (props) => {
         }
     }
 
-    return (
-        <View>
-            <Header />
 
+    return (
+        <View style={{ flex: 1, }} >
+            <Header />
             {/* Search bar section */}
             <View style={styles.searchBAr} >
                 <Ionicons name="search-circle-outline" size={40} color="green" style={{ paddingLeft: 5 }} />
@@ -93,13 +93,11 @@ const ProductContainer = (props) => {
                 />
                 <Entypo name="cross" size={24} color="black" onPress={onBlur} />
             </View>
-
-
-            {/* conditional rendering based on searchbar action */}
+            {/* conditional rendering based on searchbar action*/}
             {focus == true ?
                 <SearchedProduct productsFiltered={productFiltered} />
                 :
-                <View style={{ flex: 1, paddingBottom: 10, }} >
+                <View style={{ flex: 1 }}>
 
                     <View>
                         <Banner />
@@ -114,14 +112,18 @@ const ProductContainer = (props) => {
                     <FlatList
                         numColumns={2}
                         data={products}
-                        renderItem={({ item }) => <ProductList id={item._id} item={item} />}
+                        renderItem={({ item }) => <ProductList
+                            id={item._id}
+                            item={item}
+                            navigation={props.navigation}
+                        />}
                         keyExtractor={item => item.name}
 
                     />
                 </View>
             }
-
         </View>
+
     )
 }
 

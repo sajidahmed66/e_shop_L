@@ -1,8 +1,22 @@
 import React from 'react'
 import { StyleSheet, Text, View, Dimensions, Image, Button } from 'react-native'
+import { connect } from 'react-redux';
 
+//cart actions import
+import { addToCart, removeFromCart, clearCart } from '../../Redux/cartItems/cartItemActionCreators';
 
+//dimensions
 const { width } = Dimensions.get('window');
+
+//mapStateTopProps:
+
+const mapDispatchToProps = dispatch => {
+    return {
+        addToCart: productItem => dispatch(addToCart({ productItem, quantity: 1 })),
+        // removeFromCart: productItem => dispatch(removeFromCart(productItem)),
+        // clearCart: () => dispatch(clearCart())
+    }
+}
 
 const ProductCard = (props) => {
 
@@ -24,14 +38,17 @@ const ProductCard = (props) => {
             <Text style={styles.price} >${price} </Text>
             {countInStock > 0 ? (
                 <View style={{ padding: 10 }}>
-                    <Button title='Add' color='green' />
+                    <Button
+                        title='Add'
+                        color='green'
+                        onPress={() => props.addToCart(props)} />
                 </View>
             ) : <Text style={{ marginTop: 20 }} >No stock is available</Text>}
         </View>
     )
 }
 
-export default ProductCard
+export default connect(null, mapDispatchToProps)(ProductCard)
 
 const styles = StyleSheet.create({
     container: {
